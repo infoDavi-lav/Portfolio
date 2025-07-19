@@ -1,0 +1,645 @@
+/* Reset e stile base */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Nero puro */
+    overflow-x: hidden;
+}
+
+/* Nuovo stile per la cornice ispirato a Tarkov */
+.profile-frame {
+    /* position: auto; --> cambia così: */
+    position: static;
+    /* top: 110px; */
+    /* right: 150px; */
+    order: 2; /* Sposta il profilo a destra (seconda posizione) */
+    width: 285px;
+    height: 550px;
+    border: 8px solid transparent;
+    background: 
+        linear-gradient(#000, #000) padding-box,
+        linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a) border-box;
+    box-shadow: 
+        0 0 20px rgba(202, 174, 68, 0.5),
+        inset 0 0 30px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* Contenitore interno per l'immagine */
+.profile-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+}
+
+.profile-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #5a4d2a;
+    box-shadow: inset 0 0 15px #000;
+    filter: sepia(40%) contrast(110%) brightness(0.9);
+}
+
+/* Titolo sotto l'immagine (simile a "Tagilla") */
+.profile-title {
+    background: linear-gradient(#5a4d2a, #3a321f);
+    color: #c0a86a;
+    font-family: 'Trajan Pro', serif;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 8px 0;
+    text-shadow: 1px 1px 2px #000;
+    border-top: 2px solid #8a7a3a;
+}
+
+
+/*---------------------------------------------------*/ 
+
+
+/* Sezione informazioni */
+.info-section {
+    margin-bottom: 15px;
+}
+
+.section-title {
+    color: #c0a86a;
+    font-family: 'Trajan Pro', serif;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #5a4d2a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tabella informazioni */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.info-cell {
+    padding: 5px;
+    border: 1px solid #5a4d2a;
+}
+
+.info-cell.label {
+    width: 40%;
+    background-color: rgba(90, 77, 42, 0.3);
+    color: #c0a86a;
+    font-weight: bold;
+    text-align: center;
+    border-right: none;
+}
+
+.info-cell.value {
+    width: 60%;
+    background-color: rgba(10, 10, 10, 0.5);
+    color: #e0e0e0;
+    border-left: none;
+}
+
+/* Effetti hover */
+.info-row:hover .label {
+    background-color: rgba(90, 77, 42, 0.5);
+}
+
+.info-row:hover .value {
+    background-color: rgba(10, 10, 10, 0.7);
+}
+
+
+/*---------------------------------------------------*/ 
+
+
+/* Contenitore per il titolo e la cornice */
+.header {
+    position: relative;
+    text-align: center;
+    margin-top: 20px; /* Spazio dall'alto */
+}
+
+/* Stile del titolo principale */
+.wiki-title {
+    color: #c0a86a; /* Oro sporco per coerenza */
+    font-family: 'Trajan Pro', serif; /* Font epico da gioco */
+    font-size: 3rem;
+    text-shadow: 
+        0 0 10px rgba(202, 174, 68, 0.7),
+        2px 2px 0 #000; /* Ombra per leggibilità */
+    letter-spacing: 2px;
+    margin-bottom: 40px; /* Spazio tra titolo e immagine */
+}
+
+
+/*---------------------------------------------------*/ 
+
+
+/* Contenitore per l'introduzione che si adatta alla profile-frame fissa */
+.intro-container {
+    padding: 20px;
+    padding-top: 50px;
+}
+
+/* Quadrante sinistro per l'introduzione */
+.intro-frame {
+    border: 8px solid transparent;
+    background: 
+        linear-gradient(#000, #000) padding-box,
+        linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a) border-box;
+    box-shadow: 
+        0 0 20px rgba(202, 174, 68, 0.5),
+        inset 0 0 30px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    color: #e0e0e0;
+    font-family: 'Trajan Pro', serif;
+}
+
+.intro-title {
+  flex: none;
+  text-align: center;
+  margin: 0 auto 10px auto; /* margine in basso per la linea */
+  color: #c0a86a;
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px #000;
+  border-bottom: none; /* rimuovi bordo */
+  position: relative;
+}
+
+.intro-content {
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+
+/*---------------------------------------------------*/ 
+
+
+/* Stile per la sezione progetti */
+.projects-section {
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+.content-wrapper {
+    max-width: 1700px;
+    margin: 0 auto;
+}
+
+.projects-title {
+    color: #c0a86a;
+    font-family: 'Trajan Pro', serif;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px #000;
+    border-bottom: 2px solid #5a4d2a;
+    padding-bottom: 10px;
+}
+
+/* Tabella progetti */
+.projects-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.projects-table th {
+    background: linear-gradient(#5a4d2a, #3a321f);
+    color: #c0a86a;
+    padding: 12px;
+    text-align: center;
+    font-family: 'Trajan Pro', serif;
+    font-size: 1.1rem;
+    border: 1px solid #8a7a3a;
+}
+
+.projects-table td {
+    background-color: rgba(10, 10, 10, 0.7);
+    color: #e0e0e0;
+    padding: 12px;
+    border: 1px solid #5a4d2a;
+    vertical-align: middle;
+}
+
+/* Stile per le celle specifiche */
+.project-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 2px solid #5a4d2a;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.project-link {
+    color: #c0a86a;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.project-link:hover {
+    color: #e0d090;
+    text-decoration: underline;
+}
+
+.project-tip {
+    font-style: italic;
+    color: #8a7a3a;
+}
+
+/* Effetto hover sulle righe */
+.projects-table tr:hover td {
+    background-color: rgba(20, 20, 20, 0.8);
+    box-shadow: 0 0 15px rgba(202, 174, 68, 0.3);
+}
+
+
+/*---------------------------------------------------*/ 
+
+
+/* Stile per la TOC orizzontale */
+.toc-container {
+    padding: 0 50px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.toc {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: fit-content;
+    max-width: 100%;
+    padding: 10px;
+    border: 3px solid transparent;
+    background:
+        linear-gradient(#000, #000) padding-box,
+        linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a) border-box;
+    box-shadow:
+        0 0 15px rgba(202, 174, 68, 0.3),
+        inset 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.toc-title {
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    color: #c0a86a;
+    font-family: 'Trajan Pro', serif;
+    text-shadow: 1px 1px 1px #000;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.toc-toggle {
+    display: none;
+}
+
+.toc-toggle-label {
+    flex-shrink: 0;
+    color: #c0a86a;
+    cursor: pointer;
+    font-family: 'Trajan Pro', serif;
+    font-size: 0.95rem;
+}
+
+.toc-toggle-label:hover {
+    color: #e0d090;
+}
+
+.toc-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+
+.toc-list li {
+    margin-right: 15px;
+    position: relative;
+    padding-left: 15px; /* Spazio per il pallino */
+}
+
+.toc-list li::before {
+    content: "•";
+    color: #c0a86a;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+.toc-list li:not(:last-child)::after {
+    content: "";
+    color: #5a4d2a;
+    position: absolute;
+    right: -10px;
+}
+
+.toc-list a {
+    color: #c0a86a;
+    text-decoration: none;
+    font-family: 'Trajan Pro', serif;
+    font-size: 0.95rem;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.toc-list a:hover {
+    color: #e0d090;
+    text-decoration: underline;
+}
+
+/* Nascondi la TOC quando il checkbox è selezionato */
+.toc-toggle:checked ~ .toc-list {
+    display: none;
+}
+
+/* Stile per l'icona del menu */
+.toc-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 1px;
+    vertical-align: center;
+}
+
+.toc-icon::before,
+.toc-icon::after {
+    content: "";
+    position: absolute;
+    background-color: #5a4d2a;
+}
+
+.toc-icon::before {
+    width: 100%;
+    height: 2px;
+    top: 4px;
+}
+
+.toc-icon::after {
+    width: 2px;
+    height: 100%;
+    left: 7px;
+}
+
+/* Modifica per schermi fino a 1024px */
+@media screen and (max-width: 1024px) {
+    .profile-frame {
+        position: static;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        margin: 30px auto;
+    }
+    
+    .profile-icon {
+        max-height: 300px;
+    }
+}
+
+/* Aggiungi questo nuovo media query tra 768px e 840px */
+@media screen and (min-width: 768px) and (max-width: 840px) {
+    .content-wrapper {
+        padding: 20px 30px; /* Riduci il padding laterale */
+    }
+    
+    .intro-frame, 
+    .projects-section {
+        padding: 15px; /* Riduci il padding interno */
+    }
+    
+    .intro-title,
+    .projects-title {
+        font-size: 1.5rem; /* Riduci la dimensione del titolo */
+    }
+    
+    .intro-content,
+    .projects-table td,
+    .projects-table th {
+        font-size: 0.95rem; /* Riduci leggermente il testo */
+    }
+    
+    .profile-frame {
+        max-width: 280px; /* Riduci ulteriormente il profilo */
+    }
+    
+    .projects-table {
+        display: block;
+        overflow-x: auto; /* Permette lo scrolling orizzontale se necessario */
+    }
+}
+
+/* Modifica anche il media query esistente per 768px */
+@media screen and (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 15px; /* Riduci ulteriormente il padding */
+    }
+    
+    .profile-frame {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 25px;
+    }
+    
+    .intro-container {
+        padding-top: 10px;
+    }
+    
+    .projects-table th,
+    .projects-table td {
+        padding: 8px 10px; /* Riduci il padding delle celle */
+        font-size: 0.9rem;
+    }
+    
+    .project-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Modifica per schermi fino a 600px */
+@media screen and (max-width: 600px) {
+    .profile-frame {
+        max-width: 280px;
+    }
+    
+    .profile-title {
+        font-size: 1.3rem;
+    }
+    
+    .section-title {
+        font-size: 1rem;
+    }
+    
+    .profile-info {
+        padding: 10px; /* Riduci spazio interno */
+    }
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Distribuisce lo spazio tra gli elementi */
+    align-items: flex-start;
+    gap: 30px;
+    padding: 40px 60px;
+    max-width: 1700px;
+    margin: 0 auto;
+}
+
+
+/* Main content usa tutto lo spazio restante */
+.main-content {
+    order: 1; /* Sposta il contenuto principale a sinistra (prima posizione) */
+    flex: 1;
+    min-width: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-frame {
+        width: 100%;
+        max-width: 320px;
+        margin-top: 20px;
+        margin-bottom: 30px; /* Aggiungi spazio sotto il profilo */
+        order: 1; /* Forza il profilo a venire prima */
+    }
+
+    .main-content {
+        width: 100%;
+        order: 2; /* Forza il contenuto principale a venire dopo */
+    }
+}
+
+/* Nascondi inizialmente il testo "show" */
+.show-text {
+    display: none;
+}
+
+/* Quando il checkbox è selezionato (contenuto nascosto) */
+.toc-toggle:checked ~ .toc-toggle-label .hide-text {
+    display: none;
+}
+
+.toc-toggle:checked ~ .toc-toggle-label .show-text {
+    display: inline;
+}
+
+.footer {
+  background: #0d0d0d;
+  padding: 20px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background-image: 
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a) border-box;
+  box-shadow:
+    0 0 15px rgba(202, 174, 68, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.7);
+  color: #e4d7a5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 40px auto 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.footer-link {
+  color: #e4d7a5;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #f4e4a0;
+}
+
+.footer-link img {
+  filter: brightness(0.8) sepia(1) saturate(3) hue-rotate(10deg);
+}
+
+.intro-header {
+  display: flex;
+  align-items: center;       /* centra verticalmente */
+  justify-content: center;   /* centra tutto orizzontalmente */
+  gap: 12px;                 /* spazio tra lang-switcher e titolo */
+  position: relative;        /* per eventuali aggiustamenti */
+}
+
+/* Per far restare i bottoni a sinistra e il titolo centrato */
+.lang-switcher {
+  position: absolute;
+  left: 0;
+  display: flex;
+  gap: 6px;
+}
+
+.lang-switcher button {
+  background: none;
+  border: none;      /* elimina il bordo */
+  color: #c0a86a;
+  padding: 4px 6px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;     /* elimina il contorno al focus */
+}
+
+/* Se vuoi mantenere un effetto hover ma senza bordo */
+.lang-switcher button:hover {
+  background-color: rgba(192, 168, 106, 0.15);
+  box-shadow: 0 0 4px #c0a86a;
+}
+
+.intro-line {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a);
+  margin-bottom: 20px;
+  box-shadow:
+    0 0 8px rgba(202, 174, 68, 0.6),
+    inset 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.lang {
+  display: none;
+}
+
