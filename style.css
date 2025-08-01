@@ -828,3 +828,91 @@ html, body {
     padding: 20px 15px !important;
   }
 }
+
+@media (max-width: 400px) {
+  .features-grid {
+    gap: 10px !important;
+  }
+  
+  .feature-card {
+    padding: 12px !important;
+    margin: 0 !important;
+  }
+
+  .feature-icon {
+    font-size: 1.5rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .feature-name {
+    font-size: 1rem !important;
+  }
+
+  .feature-desc {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .lightbox-content {
+    width: 98% !important;
+    margin: 5% auto !important;
+    padding: 10px !important;
+  }
+
+  .lightbox-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  .lightbox-desc {
+    font-size: 0.82rem !important;
+    margin-bottom: 15px !important;
+  }
+
+  .examples-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .example-item {
+    padding: 8px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .intro-frame {
+    margin: 0 auto !important;
+    width: 95% !important;
+    padding: 12px !important;
+  }
+
+  .intro-content {
+    font-size: 0.9rem !important;
+  }
+
+  .intro-title {
+    font-size: 1.3rem !important;
+    padding: 0 5px !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .lang-switcher {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .lang-switcher button {
+    padding: 2px 4px !important;
+    font-size: 12px !important;
+  }
+
+  .profile-frame {
+    width: 260px !important;
+    height: 600px !important;
+  }
+}
