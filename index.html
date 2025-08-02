@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Wiki</title>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)">
 </head>
 <body>
     <div class="header">
@@ -2127,7 +2138,288 @@
             }
         });
     </script>
+    <!-- Tremor!!!! -->
+    <script>
+        // Easter egg: make elements fall when typing "fall"
+        let fmallSequence = [];
+        const fallCode = ['f', 'a', 'l', 'l'];
+        let animationIntervals = []; // Store all animation intervals for cleanup
+        let isEarthquakeActive = false;
 
+        document.addEventListener('keydown', (e) => {
+            // Reset on Enter key
+            if (e.key === 'Enter') {
+                resetFallEffect();
+                return;
+            }
+            
+            // Add the pressed key to the sequence
+            fallSequence.push(e.key.toLowerCase());
+            
+            // Keep only the last 4 keys
+            if (fallSequence.length > 4) {
+                fallSequence.shift();
+            }
+            
+            // Check if sequence matches "fall"
+            if (JSON.stringify(fallSequence) === JSON.stringify(fallCode)) {
+                triggerFallEffect();
+                triggerEarthquake();
+                fallSequence = []; // Reset sequence
+            }
+        });
+
+        function triggerEarthquake() {
+            if (isEarthquakeActive) return;
+            isEarthquakeActive = true;
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'easter-egg-notification';
+            notification.textContent = 'Earthquake!';
+            document.body.appendChild(notification);
+            
+            // Remove notification after animation
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+
+            const body = document.body;
+            const originalPosition = window.getComputedStyle(body).position;
+            body.style.position = 'relative';
+            
+            let intensity = 15;
+            let shakeInterval = setInterval(() => {
+                const x = (Math.random() - 0.5) * intensity;
+                const y = (Math.random() - 0.5) * intensity;
+                body.style.transform = `translate(${x}px, ${y}px)`;
+                
+                // Gradually reduce intensity
+                intensity *= 0.95;
+                
+                if (intensity < 0.5) {
+                    clearInterval(shakeInterval);
+                    body.style.transform = '';
+                    body.style.position = originalPosition;
+                    isEarthquakeActive = false;
+                }
+            }, 50);
+            
+            animationIntervals.push(shakeInterval);
+        }
+
+        function triggerFallEffect() {
+            // Clear any existing animations first
+            resetFallEffect(false);
+            
+            // Get all elements to make fall (including titles)
+            const elements = [
+                ...document.querySelectorAll('.profile-frame'),
+                ...document.querySelectorAll('.intro-frame'),
+                ...document.querySelectorAll('.profile-title'),
+                ...document.querySelectorAll('.intro-title'),
+                ...document.querySelectorAll('.projects-title'),
+                ...document.querySelectorAll('.features-title'),
+                ...document.querySelectorAll('.wiki-title'),
+                document.querySelector('.projects-table'),
+                document.querySelector('.features-grid'),
+                document.querySelector('.toc-container')
+            ].filter(el => el);
+
+            elements.forEach((element, index) => {
+                const randomX = (Math.random() - 0.5) * 20;
+                const randomRotation = (Math.random() - 0.5) * 30;
+                
+                element.style.transition = 'transform 0.1s linear';
+                element.dataset.originalTransform = element.style.transform || '';
+                element.dataset.velocityY = 0;
+                element.dataset.rotation = randomRotation;
+                element.dataset.rotationSpeed = (Math.random() - 0.5) * 10;
+                
+                animateFall(element, index * 100);
+            });
+        }
+
+        function animateFall(element, delay) {
+            const timeoutId = setTimeout(() => {
+                let posY = 0;
+                let velocityY = parseFloat(element.dataset.velocityY) || 0;
+                let rotation = parseFloat(element.dataset.rotation) || 0;
+                const rotationSpeed = parseFloat(element.dataset.rotationSpeed) || 0;
+                const gravity = 0.5;
+                const bounceFactor = 0.7;
+                
+                const intervalId = setInterval(() => {
+                    // Apply earthquake effect if active
+                    let earthquakeX = 0;
+                    let earthquakeY = 0;
+                    if (isEarthquakeActive) {
+                        earthquakeX = (Math.random() - 0.5) * 5;
+                        earthquakeY = (Math.random() - 0.5) * 5;
+                    }
+                    
+                    // Apply gravity
+                    velocityY += gravity;
+                    posY += velocityY;
+                    rotation += rotationSpeed;
+                    
+                    // Check if element hits bottom of viewport
+                    const viewportHeight = window.innerHeight;
+                    const elementRect = element.getBoundingClientRect();
+                    
+                    if (elementRect.bottom + posY > viewportHeight) {
+                        // Bounce effect
+                        posY = viewportHeight - elementRect.bottom;
+                        velocityY = -velocityY * bounceFactor;
+                        element.dataset.rotationSpeed = rotationSpeed * 0.9;
+                        
+                        // Stop animation when bouncing is minimal
+                        if (Math.abs(velocityY) < 1) {
+                            clearInterval(intervalId);
+                            animationIntervals = animationIntervals.filter(id => id !== intervalId);
+                        }
+                    }
+                    
+                    // Apply transformations
+                    element.style.transform = `${element.dataset.originalTransform} translate(${earthquakeX}px, ${posY + earthquakeY}px) rotate(${rotation}deg)`;
+                    
+                    // Update element data
+                    element.dataset.velocityY = velocityY;
+                    element.dataset.rotation = rotation;
+                }, 16); // ~60fps
+                
+                animationIntervals.push(intervalId);
+            }, delay);
+            
+            animationIntervals.push(timeoutId);
+        }
+
+        function resetFallEffect(showNotification = true) {
+            // Clear all animations
+            animationIntervals.forEach(intervalId => {
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    clearTimeout(intervalId);
+                }
+            });
+            animationIntervals = [];
+            isEarthquakeActive = false;
+            
+            // Reset body transform
+            document.body.style.transform = '';
+            document.body.style.position = '';
+            
+            // Reset all elements
+            const elements = [
+                ...document.querySelectorAll('.profile-frame'),
+                ...document.querySelectorAll('.intro-frame'),
+                ...document.querySelectorAll('.profile-title'),
+                ...document.querySelectorAll('.intro-title'),
+                ...document.querySelectorAll('.projects-title'),
+                ...document.querySelectorAll('.features-title'),
+                ...document.querySelectorAll('.wiki-title'),
+                document.querySelector('.projects-table'),
+                document.querySelector('.features-grid'),
+                document.querySelector('.toc-container')
+            ].filter(el => el);
+
+            elements.forEach(element => {
+                if (element.dataset.originalTransform !== undefined) {
+                    element.style.transform = element.dataset.originalTransform;
+                    delete element.dataset.originalTransform;
+                } else {
+                    element.style.transform = '';
+                }
+                element.style.transition = 'transform 0.5s ease-out';
+                
+                // Remove physics data
+                delete element.dataset.velocityY;
+                delete element.dataset.rotation;
+                delete element.dataset.rotationSpeed;
+            });
+
+            if (showNotification) {
+                const notification = document.createElement('div');
+                notification.className = 'easter-egg-notification';
+                notification.textContent = 'Effects reset!';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            }
+        }
+    </script>
+    <script>
+        // Aspetta che il DOM sia completamente caricato
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (!themeToggle) {
+                console.error("Elemento themeToggle non trovato!");
+                return;
+            }
+
+            // Theme Management
+            function applyTheme(theme) {
+                if (theme === 'light') {
+                    document.body.classList.add('light-mode');
+                } else {
+                    document.body.classList.remove('light-mode');
+                }
+                updateThemeIcon();
+                updateMetaThemeColor();
+            }
+
+            function updateThemeIcon() {
+                const isLightMode = document.body.classList.contains('light-mode');
+                const moonIcon = themeToggle.querySelector('.fa-moon');
+                const sunIcon = themeToggle.querySelector('.fa-sun');
+                
+                if (moonIcon && sunIcon) {
+                    if (isLightMode) {
+                        moonIcon.style.opacity = '0';
+                        moonIcon.style.transform = 'translateY(-20px)';
+                        sunIcon.style.opacity = '1';
+                        sunIcon.style.transform = 'translateY(0)';
+                    } else {
+                        moonIcon.style.opacity = '1';
+                        moonIcon.style.transform = 'translateY(0)';
+                        sunIcon.style.opacity = '0';
+                        sunIcon.style.transform = 'translateY(20px)';
+                    }
+                }
+            }
+
+            function updateMetaThemeColor() {
+                const themeColor = document.body.classList.contains('light-mode') 
+                    ? '#f5f5f5' 
+                    : '#000000';
+                const metaTheme = document.querySelector('meta[name="theme-color"]');
+                if (metaTheme) {
+                    metaTheme.content = themeColor;
+                }
+            }
+
+            // Initialize theme
+            const currentTheme = localStorage.getItem('theme') || 
+                                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(currentTheme);
+
+            // Toggle theme
+            themeToggle.addEventListener('click', function() {
+                const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            });
+
+            // Watch for system theme changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
