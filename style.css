@@ -1038,6 +1038,7 @@ html, body {
   transform: rotate(180deg);
 }
 /*-----------------------------------------------------------*/
+
 /* Icons8 Attribution */
 .icons8-attribution {
     position: fixed;
@@ -1059,4 +1060,302 @@ html, body {
     text-decoration: underline;
 }
 
+/*-----------------------------------------------------------*/
+
+/* Tremors */
+.profile-frame, 
+.intro-frame, 
+.projects-table, 
+.features-grid, 
+.toc-container {
+    transition: transform 0.3s ease-out;
+    will-change: transform; /* Optimize for animations */
+}
+
+/* Easter egg notification */
+.easter-egg-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(192, 168, 106, 0.9);
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Trajan Pro', serif;
+    z-index: 9999;
+    animation: fadeOut 3s forwards;
+    animation-delay: 2s;
+    opacity: 1;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+/*-----------------------------------------------------------*/
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#themeToggle {
+    background: rgba(192, 168, 106, 0.2);
+    border: 2px solid #c0a86a;
+    color: #c0a86a;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#themeToggle i {
+    position: absolute;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+#themeToggle .fa-sun {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+#themeToggle .fa-moon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Light Mode Styles */
+body.light-mode {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Table of Contents */
+.light-mode .toc {
+    background: linear-gradient(#f5f5f5, #f5f5f5) padding-box,
+                linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a) border-box;
+    box-shadow: 0 0 15px rgba(90, 77, 42, 0.2);
+}
+
+.light-mode .toc-title {
+    color: #5a4d2a;
+}
+
+.light-mode .toc-list a {
+    color: #5a4d2a;
+}
+
+.light-mode .toc-list a:hover {
+    color: #8a7a3a;
+    text-decoration: underline;
+}
+
+.light-mode .toc-list li::before {
+    color: #8a7a3a;
+}
+
+/* Intro Content */
+.light-mode .intro-frame {
+    background: linear-gradient(#f5f5f5, #f5f5f5) padding-box,
+                linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a) border-box;
+    color: #333;
+}
+
+.light-mode .intro-content {
+    color: #333;
+}
+
+.light-mode .intro-line {
+    background: linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a);
+    box-shadow: 0 0 8px rgba(90, 77, 42, 0.4);
+}
+
+/* Footer */
+.light-mode .footer {
+    background: #e5e5e5;
+    border-image: linear-gradient(135deg, #f5f5f5, #f5f5f5, #f5f5f5, #f5f5f5) 1;
+    color: #333;
+}
+
+.light-mode .footer-link {
+    color: #5a2a2a;
+}
+
+.light-mode .footer-link:hover {
+    color: #8a7a3a;
+}
+
+.light-mode .footer-link img {
+    filter: brightness(0.7) sepia(1) saturate(3) hue-rotate(10deg);
+}
+
+.light-mode .icons8-attribution a {
+    color: #5a4d2a;
+}
+
+.light-mode .icons8-attribution a:hover {
+    color: #8a7a3a;
+}
+
+/* Info Tables */
+.light-mode .info-cell.value {
+    background-color: rgba(245, 245, 245, 0.9);
+    color: #333;
+}
+
+.light-mode .info-cell.label {
+    background-color: rgba(192, 168, 106, 0.2);
+    color: #5a4d2a;
+}
+
+.light-mode .info-row:hover .label {
+    background-color: rgba(192, 168, 106, 0.3);
+}
+
+.light-mode .info-row:hover .value {
+    background-color: rgba(245, 245, 245, 0.95);
+}
+
+/* Projects */
+.light-mode .project-tip {
+    color: #8a7a3a;
+}
+
+.light-mode .projects-table th {
+    background: linear-gradient(#5a4d2a, #3a321f);
+    color: #c0a86a;
+}
+
+.light-mode .projects-table td {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: #d4c9a1;
+}
+
+.light-mode .projects-table tr:hover td {
+    background-color: rgba(245, 245, 245, 0.95);
+    box-shadow: 0 0 15px rgba(90, 77, 42, 0.2);
+}
+
+/* Projects Description - Light Mode Darker Text */
+.light-mode .projects-table td {
+    color: #444; /* Testo più scuro per le celle */
+}
+
+/* Features */
+.light-mode .feature-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: #d4c9a1;
+}
+
+.light-mode .feature-card:hover {
+    background-color: rgba(245, 245, 245, 0.95);
+    box-shadow: 0 0 15px rgba(90, 77, 42, 0.2);
+}
+
+.light-mode .feature-icon {
+    color: #5a4d2a;
+}
+
+.light-mode .feature-name {
+    border-bottom-color: #d4c9a1;
+}
+
+.light-mode .feature-card::after {
+    color: #5a4d2a;
+}
+
+/* Features - Text Color Adjustments */
+.light-mode .feature-desc {
+    color: #444; /* Più scuro del #333 originale */
+}
+
+/* FAQ */
+.light-mode .faq-panel {
+    background: #fff;
+    color: #333;
+}
+
+.light-mode .faq-title {
+    background: #f5f5f5;
+    color: #5a4d2a;
+}
+
+.light-mode .faq-question {
+    color: #333;
+    border-bottom-color: #eee;
+}
+
+.light-mode .faq-answer {
+    background: #f9f9f9;
+    color: #333;
+}
+
+/* Toggle Button in Light Mode */
+.light-mode #themeToggle {
+    background: rgba(90, 77, 42, 0.2);
+    border-color: #5a4d2a;
+    color: #5a4d2a;
+}
+
+.light-mode #themeToggle .fa-sun {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.light-mode #themeToggle .fa-moon {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Titles and Links */
+.light-mode .wiki-title,
+.light-mode .intro-title,
+.light-mode .projects-title,
+.light-mode .features-title,
+.light-mode .section-title,
+.light-mode .profile-title,
+.light-mode .feature-name {
+    color: #5a4d2a;
+}
+
+.light-mode .toc-list a,
+.light-mode .project-link,
+.light-mode .footer-link {
+    color: #5a4d2a;
+}
+
+.light-mode .toc-list a:hover,
+.light-mode .project-link:hover,
+.light-mode .footer-link:hover {
+    color: #8a7a3a;
+}
+
+/* Profile Frames */
+.light-mode .profile-frame {
+    background: linear-gradient(#f5f5f5, #f5f5f5) padding-box,
+                linear-gradient(135deg, #8a7a3a, #5a4d2a, #c0a86a, #5a4d2a) border-box;
+    color: #333;
+}
+
+.light-mode .profile-title {
+    color: #5a4d2a;
+}
+
+.light-mode .profile-image-container {
+    background: linear-gradient(rgba(245,245,245,0.7), rgba(245,245,245,0.9));
+}
 /*-----------------------------------------------------------*/
