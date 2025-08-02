@@ -1038,3 +1038,25 @@ html, body {
   transform: rotate(180deg);
 }
 /*-----------------------------------------------------------*/
+/* Icons8 Attribution */
+.icons8-attribution {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.icons8-attribution a {
+    color: #c0a86a;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: color 0.3s;
+}
+
+.icons8-attribution a:hover {
+    color: #e0d090;
+    text-decoration: underline;
+}
+
+/*-----------------------------------------------------------*/
