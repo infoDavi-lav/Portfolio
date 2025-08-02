@@ -743,6 +743,11 @@ body {
 
 /*------------------------------------------*/
 /*Telefono*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 @media (max-width: 1040px) {
   .intro-header {
@@ -1359,3 +1364,4 @@ body.light-mode {
     background: linear-gradient(rgba(245,245,245,0.7), rgba(245,245,245,0.9));
 }
 /*-----------------------------------------------------------*/
+
